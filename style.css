@@ -1,67 +1,99 @@
-@font-face {
-    font-family: 'Eras Bold';
-    src: url('eras-bold.ttf');
-}
-
+/* Global Styles */
 body {
     font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
-    color: #333;
     margin: 0;
     padding: 0;
+    background-color: #ffffff;
+    color: #333;
 }
 
+/* Header (Navbar) */
 header {
-    background-color: #0073e6;
-    color: white;
-    padding: 20px;
-    text-align: center;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 5%;
+    background-color: white;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+    color: black;
 }
 
 nav ul {
     list-style: none;
     padding: 0;
+    margin: 0;
+    display: flex;
 }
 
 nav ul li {
-    display: inline;
     margin: 0 15px;
 }
 
 nav ul li a {
+    text-decoration: none;
+    color: black;
+    font-size: 16px;
+}
+
+.btn {
+    padding: 10px 20px;
+    background-color: #0057ff;
     color: white;
     text-decoration: none;
+    border-radius: 5px;
 }
 
-section {
-    margin: 20px;
-    padding: 20px;
-    background-color: white;
-    border-radius: 10px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+/* Hero Section */
+.hero {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 50px 5%;
 }
 
-h1, h2 {
-    font-family: 'Eras Bold', sans-serif;
-    color: #0073e6;
+.hero-text {
+    width: 50%;
 }
 
-button {
-    background-color: #0073e6;
+.hero h1 {
+    font-size: 48px;
+    font-weight: bold;
+}
+
+.highlight {
+    color: #0057ff;
+}
+
+.hero p {
+    font-size: 18px;
+    margin: 20px 0;
+    color: #555;
+}
+
+.cta-btn {
+    display: inline-block;
+    padding: 12px 20px;
+    background-color: #0057ff;
     color: white;
-    border: none;
-    padding: 10px 15px;
-    cursor: pointer;
+    text-decoration: none;
+    font-weight: bold;
     border-radius: 5px;
 }
 
-button:hover {
-    background-color: #005bb5;
+.cta-btn:hover {
+    background-color: #003bb5;
 }
 
-input {
-    padding: 8px;
-    margin: 5px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+/* Hero Image */
+.hero-image {
+    width: 50%;
+}
+
+.hero-image img {
+    width: 100%;
+    border-radius: 10px;
 }
