@@ -1,57 +1,38 @@
-// Task Planner
 function addTask() {
-    let taskInput = document.getElementById("taskInput");
+    let taskInput = document.getElementById("taskInput").value;
+    let priority = document.getElementById("priority").value;
+
+    if (taskInput.trim() === "") {
+        alert("Please enter a task!");
+        return;
+    }
+
     let taskList = document.getElementById("taskList");
+    let listItem = document.createElement("li");
+    listItem.classList.add("task-item");
 
-    if (taskInput.value.trim() !== "") {
-        let li = document.createElement("li");
-        li.textContent = taskInput.value;
-        taskList.appendChild(li);
-        taskInput.value = "";
-    }
-}
+    // Create a priority indicator (colored dot)
+    let priorityDot = document.createElement("span");
+    priorityDot.classList.add("priority-dot", priority); // Apply CSS class
 
-// Pomodoro Timer
-let timer;
-let timeLeft = 1500; // 25 minutes in seconds
+    // Create task text
+    let taskText = document.createElement("span");
+    taskText.textContent = taskInput;
 
-function startTimer() {
-    if (!timer) {
-        timer = setInterval(() => {
-            if (timeLeft > 0) {
-                timeLeft--;
-                document.getElementById("timerDisplay").textContent = formatTime(timeLeft);
-            } else {
-                clearInterval(timer);
-                timer = null;
-                alert("Time's up! Take a break.");
-            }
-        }, 1000);
-    }
-}
+    // Create delete button
+    let deleteBtn = document.createElement("button");
+    deleteBtn.textContent = "❌";
+    deleteBtn.classList.add("delete-btn");
+    deleteBtn.onclick = function () {
+        taskList.removeChild(listItem);
+    };
 
-function resetTimer() {
-    clearInterval(timer);
-    timer = null;
-    timeLeft = 1500;
-    document.getElementById("timerDisplay").textContent = "25:00";
-}
+    // Append elements to list item
+    listItem.appendChild(priorityDot);
+    listItem.appendChild(taskText);
+    listItem.appendChild(deleteBtn);
+    taskList.appendChild(listItem);
 
-function formatTime(seconds) {
-    let minutes = Math.floor(seconds / 60);
-    let secs = seconds % 60;
-    return `${minutes}:${secs < 10 ? "0" + secs : secs}`;
-}
-
-// Goal Tracker
-function addGoal() {
-    let goalInput = document.getElementById("goalInput");
-    let goalList = document.getElementById("goalList");
-
-    if (goalInput.value.trim() !== "") {
-        let li = document.createElement("li");
-        li.textContent = goalInput.value;
-        goalList.appendChild(li);
-        goalInput.value = "";
-    }
+    // Clear input field
+    document.getElementById("taskInput").value = "";
 }
