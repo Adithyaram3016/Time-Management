@@ -1,35 +1,45 @@
-/* General Styles */
-body {
-    font-family: Arial, sans-serif;
+/* General Reset */
+body, h1, h2, h3, p, ul, li {
     margin: 0;
     padding: 0;
-    background-color: #f4f4f4;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
 }
 
 /* Header */
 header {
+    background-color: #007bff;
+    color: white;
+    padding: 15px 20px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 15px 20px;
-    background-color: #007bff;
-    color: white;
 }
 
-header img {
-    height: 50px;  /* Adjust the logo size */
-    width: auto;
+/* Logo */
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+.logo img {
+    width: 40px; /* Adjusted to prevent oversized logo */
+    height: auto;
+    margin-right: 10px;
+}
+
+.logo h1 {
+    font-size: 24px;
 }
 
 /* Navigation */
 nav ul {
     list-style: none;
-    padding: 0;
+    display: flex;
 }
 
 nav ul li {
-    display: inline;
-    margin-right: 15px;
+    margin-left: 15px;
 }
 
 nav ul li a {
@@ -38,21 +48,29 @@ nav ul li a {
     font-weight: bold;
 }
 
+nav ul li a:hover {
+    text-decoration: underline;
+}
+
+/* Main Content */
+section {
+    padding: 20px;
+    background-color: #f0f0f0;
+}
+
 /* Task Planner */
 #planner {
-    text-align: center;
-    margin: 20px auto;
-    padding: 20px;
-    background-color: white;
     max-width: 500px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    background: white;
+    padding: 15px;
     border-radius: 8px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
 }
 
 #taskInput {
+    width: 70%;
     padding: 8px;
-    width: 60%;
-    margin-right: 10px;
+    margin-right: 5px;
 }
 
 #priority {
@@ -60,68 +78,84 @@ nav ul li a {
 }
 
 button {
-    padding: 8px 12px;
-    border: none;
-    background-color: #28a745;
+    background: #007bff;
     color: white;
+    border: none;
+    padding: 8px 12px;
     cursor: pointer;
     border-radius: 4px;
 }
 
 button:hover {
-    background-color: #218838;
+    background: #0056b3;
 }
 
 /* Task List */
-#taskList {
+ul {
+    margin-top: 15px;
     list-style: none;
-    padding: 0;
-    margin-top: 20px;
 }
 
 .task-item {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background: #ffffff;
-    padding: 10px;
-    margin-bottom: 8px;
+    background: white;
+    padding: 8px 10px;
     border-radius: 5px;
-    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
-    transition: 0.3s;
+    margin-bottom: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: background 0.3s ease-in-out;
 }
 
-/* Priority Dots */
+.task-item:hover {
+    background: #f8f9fa;
+}
+
+/* Priority Indicator (Colored Dot) */
 .priority-dot {
     width: 10px;
     height: 10px;
     border-radius: 50%;
-    display: inline-block;
     margin-right: 10px;
+    display: inline-block;
 }
 
-.low {
-    background-color: red;
-}
+.low { background-color: red; }
+.medium { background-color: orange; }
+.high { background-color: green; }
 
-.medium {
-    background-color: orange;
-}
-
-.high {
-    background-color: green;
-}
-
-/* Delete Button (Hidden by Default) */
+/* Delete Button - Hidden Initially */
 .delete-btn {
+    display: none;
     background: none;
     border: none;
     cursor: pointer;
     font-size: 16px;
-    color: red;
-    display: none; /* Hidden by default */
 }
 
+/* Show Delete Button on Hover */
 .task-item:hover .delete-btn {
-    display: inline-block; /* Show on hover */
+    display: inline;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    nav ul {
+        margin-top: 10px;
+    }
+
+    #taskInput {
+        width: 100%;
+        margin-bottom: 5px;
+    }
+
+    button {
+        width: 100%;
+    }
 }
