@@ -1,31 +1,46 @@
-/* Global Styles */
+@font-face {
+    font-family: 'Eras Bold';
+    src: url('eras-bold.ttf');
+}
+
 body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #ffffff;
+    background-color: #f8f9fa;
     color: #333;
 }
 
-/* Header (Navbar) */
+/* Header Styling */
 header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 20px 5%;
     background-color: white;
+    padding: 20px 10%;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .logo {
-    font-size: 24px;
-    font-weight: bold;
-    color: black;
+    display: flex;
+    align-items: center;
+}
+
+.logo img {
+    width: 40px;
+    margin-right: 10px;
+}
+
+.logo h1 {
+    font-family: 'Eras Bold', sans-serif;
+    color: #000;
+    font-size: 22px;
 }
 
 nav ul {
     list-style: none;
-    padding: 0;
     margin: 0;
+    padding: 0;
     display: flex;
 }
 
@@ -35,15 +50,15 @@ nav ul li {
 
 nav ul li a {
     text-decoration: none;
-    color: black;
+    color: #333;
     font-size: 16px;
+    font-weight: bold;
 }
 
-.btn {
-    padding: 10px 20px;
-    background-color: #0057ff;
+nav ul li a.get-started {
+    background-color: #0073e6;
     color: white;
-    text-decoration: none;
+    padding: 10px 15px;
     border-radius: 5px;
 }
 
@@ -52,48 +67,37 @@ nav ul li a {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 50px 5%;
+    padding: 50px 10%;
 }
 
-.hero-text {
-    width: 50%;
+.hero-text h2 {
+    font-size: 40px;
+    font-family: 'Eras Bold', sans-serif;
+    margin: 0;
 }
 
-.hero h1 {
-    font-size: 48px;
-    font-weight: bold;
+.hero-text h2 span {
+    color: #0073e6;
 }
 
-.highlight {
-    color: #0057ff;
-}
-
-.hero p {
+.hero-text p {
     font-size: 18px;
-    margin: 20px 0;
-    color: #555;
+    color: #666;
+    margin-top: 10px;
 }
 
-.cta-btn {
+.btn {
     display: inline-block;
-    padding: 12px 20px;
-    background-color: #0057ff;
+    background-color: #0073e6;
     color: white;
+    padding: 12px 20px;
     text-decoration: none;
-    font-weight: bold;
+    font-size: 18px;
     border-radius: 5px;
-}
-
-.cta-btn:hover {
-    background-color: #003bb5;
-}
-
-/* Hero Image */
-.hero-image {
-    width: 50%;
+    margin-top: 20px;
 }
 
 .hero-image img {
-    width: 100%;
+    width: 450px;
     border-radius: 10px;
 }
