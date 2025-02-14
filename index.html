@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Focus & Productivity</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Focus & Productivity Hub</h1>
+        <nav>
+            <ul>
+                <li><a href="#planner">Task Planner</a></li>
+                <li><a href="#timer">Pomodoro Timer</a></li>
+                <li><a href="#tips">Focus Tips</a></li>
+                <li><a href="#tracker">Goal Tracker</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="planner">
+        <h2>Task Planner</h2>
+        <input type="text" id="taskInput" placeholder="Add a task...">
+        <button onclick="addTask()">Add Task</button>
+        <ul id="taskList"></ul>
+    </section>
+
+    <section id="timer">
+        <h2>Pomodoro Timer</h2>
+        <p id="timerDisplay">25:00</p>
+        <button onclick="startTimer()">Start</button>
+        <button onclick="resetTimer()">Reset</button>
+    </section>
+
+    <section id="tips">
+        <h2>Focus Tips</h2>
+        <ul>
+            <li>Avoid multitasking.</li>
+            <li>Use a distraction blocker.</li>
+            <li>Take short breaks to recharge.</li>
+        </ul>
+    </section>
+
+    <section id="tracker">
+        <h2>Daily Goal Tracker</h2>
+        <input type="text" id="goalInput" placeholder="Enter your goal...">
+        <button onclick="addGoal()">Add Goal</button>
+        <ul id="goalList"></ul>
+    </section>
+
+    <script src="script.js"></script>
+</body>
+</html>
