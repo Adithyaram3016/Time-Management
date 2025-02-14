@@ -1,187 +1,99 @@
-/* General Reset */
-body, h1, h2, h3, p, ul, li {
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
-    font-family: Arial, sans-serif;
+    background-color: #ffffff;
 }
 
 /* Header */
-header {
-    background-color: #007bff;
-    color: white;
-    padding: 15px 20px;
+.header {
     display: flex;
-    align-items: center;
     justify-content: space-between;
+    align-items: center;
+    padding: 15px 50px;
+    background-color: white;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
-/* Logo */
-.logo {
+.header-logo {
     display: flex;
     align-items: center;
 }
 
-.logo img {
-    width: 40px; /* Adjusted to prevent oversized logo */
-    height: auto;
+.header-logo img {
+    width: 40px;
+    height: 40px;
     margin-right: 10px;
 }
 
-.logo h1 {
-    font-size: 24px;
-}
-
-/* Navigation */
-nav ul {
-    list-style: none;
+.header-nav {
     display: flex;
+    gap: 20px;
 }
 
-nav ul li {
-    margin-left: 15px;
+.header-nav a {
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+    font-size: 16px;
 }
 
-nav ul li a {
+.get-started {
+    background-color: #1a73e8;
     color: white;
+    padding: 10px 15px;
+    border-radius: 5px;
     text-decoration: none;
     font-weight: bold;
 }
 
-nav ul li a:hover {
-    text-decoration: underline;
-}
-
-/* Main Content */
-section {
-    padding: 20px;
-    background-color: #f0f0f0;
-}
-
-/* Task Planner */
-#planner {
-    max-width: 500px;
-    background: white;
-    padding: 15px;
-    border-radius: 8px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-}
-
-#taskInput {
-    width: 70%;
-    padding: 8px;
-    margin-right: 5px;
-}
-
-#priority {
-    padding: 8px;
-}
-
-button {
-    background: #007bff;
-    color: white;
-    border: none;
-    padding: 8px 12px;
-    cursor: pointer;
-    border-radius: 4px;
-}
-
-button:hover {
-    background: #0056b3;
-}
-
-/* Task List */
-ul {
-    margin-top: 15px;
-    list-style: none;
-}
-
-.task-item {
+/* Hero Section */
+.hero {
     display: flex;
-    align-items: center;
     justify-content: space-between;
-    background: white;
-    padding: 8px 10px;
-    border-radius: 5px;
-    margin-bottom: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    transition: background 0.3s ease-in-out;
+    align-items: center;
+    padding: 80px 10%;
+    background-color: white;
 }
 
-.task-item:hover {
-    background: #f8f9fa;
+.hero-text {
+    width: 50%;
 }
 
-/* Priority Indicator (Colored Dot) */
-.priority-dot {
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    margin-right: 10px;
+.hero-text h1 {
+    font-size: 38px;
+    font-weight: bold;
+    color: #222;
+}
+
+.hero-text h1 span {
+    color: #1a73e8;
+}
+
+.hero-text p {
+    font-size: 18px;
+    color: #666;
+    margin: 10px 0 20px;
+}
+
+.hero-text .cta {
     display: inline-block;
+    padding: 12px 20px;
+    background-color: #1a73e8;
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    text-decoration: none;
+    border-radius: 5px;
 }
 
-.low { background-color: red; }
-.medium { background-color: orange; }
-.high { background-color: green; }
-
-/* Delete Button - Hidden Initially */
-.delete-btn {
-    display: none;
-    background: none;
-    border: none;
-    cursor: pointer;
-    font-size: 16px;
-}
-
-/* Show Delete Button on Hover */
-.task-item:hover .delete-btn {
-    display: inline;
-}
-
-/* Responsive Design */
-@media (max-width: 768px) {
-    header {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-
-    nav ul {
-        margin-top: 10px;
-    }
-
-    #taskInput {
-        width: 100%;
-        margin-bottom: 5px;
-    }
-
-    button {
-        width: 100%;
-    }
-}
-/* General Image Styling */
-img {
-    max-width: 100%; /* Prevents images from exceeding their container */
-    height: auto; /* Maintains aspect ratio */
-}
-
-/* Specific Logo Styling */
-.logo img {
-    width: 40px;  /* Ensures logo is small */
-    height: auto;
-}
-
-/* Hero Section Image */
 .hero-image {
-    max-width: 50%; /* Limits size to half the screen width */
-    display: block;
-    margin: 20px auto; /* Centers the image */
-    border-radius: 8px; /* Optional: Adds rounded corners */
+    width: 50%;
 }
 
-/* Responsive Image Fix for Smaller Screens */
-@media (max-width: 768px) {
-    .hero-image {
-        max-width: 80%; /* Slightly larger on mobile */
-    }
+.hero-image img {
+    width: 100%;
+    border-radius: 10px;
+    object-fit: cover;
 }
