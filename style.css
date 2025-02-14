@@ -27,6 +27,13 @@ header {
     margin-right: 10px;
 }
 
+/* Make "Timemaster" text white */
+.logo span, .logo h1 {
+    color: white; /* Set text color to white */
+    font-weight: bold;
+    font-size: 20px;
+}
+
 nav ul {
     list-style: none;
     display: flex;
@@ -162,7 +169,7 @@ button:hover {
 }
 
 /* Priority Colors */
-.low { background-color: blue; }
+.low { background-color: skyblue; }
 .medium { background-color: orange; }
 .high { background-color: red; }
 
