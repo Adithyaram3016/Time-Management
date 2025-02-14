@@ -159,3 +159,29 @@ ul {
         width: 100%;
     }
 }
+/* General Image Styling */
+img {
+    max-width: 100%; /* Prevents images from exceeding their container */
+    height: auto; /* Maintains aspect ratio */
+}
+
+/* Specific Logo Styling */
+.logo img {
+    width: 40px;  /* Ensures logo is small */
+    height: auto;
+}
+
+/* Hero Section Image */
+.hero-image {
+    max-width: 50%; /* Limits size to half the screen width */
+    display: block;
+    margin: 20px auto; /* Centers the image */
+    border-radius: 8px; /* Optional: Adds rounded corners */
+}
+
+/* Responsive Image Fix for Smaller Screens */
+@media (max-width: 768px) {
+    .hero-image {
+        max-width: 80%; /* Slightly larger on mobile */
+    }
+}
