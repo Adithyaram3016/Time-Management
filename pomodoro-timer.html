@@ -3,119 +3,151 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Task Planner</title>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <title>Pomodoro Timer with Social Media Block</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Poppins', sans-serif;
+            text-align: center;
+            background-color: #f4f4f4;
+            padding: 20px;
+        }
+
+        .toggle-container {
             display: flex;
+            align-items: center;
             justify-content: center;
             margin-top: 20px;
         }
-        .container {
-            width: 400px;
-            background: #f8f9fa;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+
+        .toggle-label {
+            font-size: 18px;
+            margin-right: 10px;
+        }
+
+        .toggle-switch {
+            position: relative;
+            display: inline-block;
+            width: 50px;
+            height: 25px;
+        }
+
+        .toggle-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: 0.4s;
+            border-radius: 34px;
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 18px;
+            width: 18px;
+            left: 4px;
+            bottom: 3.5px;
+            background-color: white;
+            transition: 0.4s;
+            border-radius: 50%;
+        }
+
+        input:checked + .slider {
+            background-color: #007BFF;
+        }
+
+        input:checked + .slider:before {
+            transform: translateX(24px);
+        }
+
+        #warningScreen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            color: white;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            font-size: 20px;
             text-align: center;
-        }
-        .task {
-            background: white;
-            padding: 10px;
-            margin: 5px 0;
-            border-radius: 5px;
-            display: flex;
-            justify-content: space-between;
-            cursor: grab;
-        }
-        .task.high { border-left: 5px solid red; }
-        .task.medium { border-left: 5px solid orange; }
-        .task.low { border-left: 5px solid green; }
-        #taskList {
-            min-height: 100px;
-            padding: 10px;
-            border: 2px dashed #ccc;
-            border-radius: 5px;
-        }
-        .completed {
-            text-decoration: line-through;
-            color: gray;
-        }
-        #timerControls {
-            margin-top: 20px;
+            padding: 20px;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h3>Task Planner</h3>
-        <input type="text" id="taskInput" placeholder="Add a new task...">
-        <button onclick="addTask()">Add Task</button>
-        <p><strong>AI Suggestion:</strong> Focus on high-priority tasks first.</p>
-        <div id="taskList"></div>
-        
-        <h3>Pomodoro Timer</h3>
-        <input type="number" id="timerInput" placeholder="Set time (minutes)" min="1">
-        <button onclick="startTimer()">Start</button>
-        <p id="timerDisplay">00:00</p>
-        <button onclick="stopTimer()">Stop</button>
+    <h2>Pomodoro Timer with Social Media Blocking</h2>
+
+    <div class="toggle-container">
+        <span class="toggle-label">Block Social Media</span>
+        <label class="toggle-switch">
+            <input type="checkbox" id="blockToggle">
+            <span class="slider"></span>
+        </label>
+    </div>
+
+    <div id="warningScreen">
+        <p>🚫 Focus Mode is ON! Close social media apps and return to your tasks. 🚀</p>
     </div>
 
     <script>
-        let timer;
-        let timeLeft;
+        const blockedSites = ["youtube.com", "instagram.com", "facebook.com", "twitter.com", "tiktok.com"];
+        const mobileApps = ["Instagram", "TikTok", "YouTube", "Facebook", "WhatsApp", "Snapchat"];
 
-        function addTask() {
-            let taskText = document.getElementById("taskInput").value;
-            if (taskText === "") return;
-            let priority = prompt("Enter priority: high, medium, low", "medium").toLowerCase();
-            let task = `<div class='task ${priority}'><span>${taskText}</span><button onclick='markComplete(this)'>✔</button></div>`;
-            $("#taskList").append(task);
-            $(".task").draggable({ revert: "invalid" });
-            document.getElementById("taskInput").value = "";
+        function blockSites() {
+            localStorage.setItem("blockActive", "true");
         }
 
-        function markComplete(btn) {
-            $(btn).parent().toggleClass("completed");
+        function unblockSites() {
+            localStorage.removeItem("blockActive");
         }
 
-        function startTimer() {
-            let minutes = document.getElementById("timerInput").value;
-            if (!minutes || minutes <= 0) return;
-            timeLeft = minutes * 60;
-            updateTimerDisplay();
-            timer = setInterval(() => {
-                timeLeft--;
-                updateTimerDisplay();
-                if (timeLeft <= 0) stopTimer();
-            }, 1000);
-
-            document.documentElement.requestFullscreen(); // Lock screen
-            window.addEventListener("keydown", preventKeys);
-        }
-
-        function stopTimer() {
-            clearInterval(timer);
-            document.exitFullscreen();
-            window.removeEventListener("keydown", preventKeys);
-        }
-
-        function updateTimerDisplay() {
-            let minutes = Math.floor(timeLeft / 60);
-            let seconds = timeLeft % 60;
-            document.getElementById("timerDisplay").innerText = 
-                `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
-        }
-
-        function preventKeys(e) {
-            e.preventDefault(); // Blocks exiting or using shortcuts
-        }
-
-        $(function () {
-            $("#taskList").sortable();
+        document.getElementById("blockToggle").addEventListener("change", function () {
+            if (this.checked) {
+                blockSites();
+                checkBlockStatus();
+            } else {
+                unblockSites();
+            }
         });
+
+        function checkBlockStatus() {
+            if (localStorage.getItem("blockActive") === "true") {
+                let currentSite = window.location.hostname;
+                if (blockedSites.some(site => currentSite.includes(site))) {
+                    alert("Focus Mode is ON! Redirecting to Pomodoro Timer.");
+                    window.location.href = "YOUR_POMODORO_TIMER_URL";
+                }
+
+                if (isMobileDevice()) {
+                    showMobileWarning();
+                }
+            }
+        }
+
+        function isMobileDevice() {
+            return /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+        }
+
+        function showMobileWarning() {
+            document.getElementById("warningScreen").style.display = "flex";
+            setTimeout(() => {
+                document.getElementById("warningScreen").style.display = "none";
+            }, 5000); // Show for 5 seconds
+        }
+
+        checkBlockStatus();
     </script>
 </body>
 </html>
