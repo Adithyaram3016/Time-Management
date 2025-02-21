@@ -16,7 +16,7 @@
         </nav>
     </header>
 
-    <section>
+    <section class="focus-tips">
         <h2>Focus Tips</h2>
         <ul>
             <li>Avoid multitasking.</li>
@@ -24,5 +24,28 @@
             <li>Take short breaks to recharge.</li>
         </ul>
     </section>
+
+    <section class="quotes">
+        <h2>Stay Motivated!</h2>
+        <p id="quote">"The secret of getting ahead is getting started." – Mark Twain</p>
+    </section>
+
+    <script>
+        const quotes = [
+            "\"Focus on being productive instead of busy.\" – Tim Ferriss",
+            "\"Success is the sum of small efforts, repeated day in and day out.\" – Robert Collier",
+            "\"Your focus determines your reality.\" – Qui-Gon Jinn",
+            "\"Don't watch the clock; do what it does. Keep going.\" – Sam Levenson",
+            "\"It’s not that I’m so smart, it’s just that I stay with problems longer.\" – Albert Einstein"
+        ];
+
+        let quoteIndex = 0;
+        function changeQuote() {
+            quoteIndex = (quoteIndex + 1) % quotes.length;
+            document.getElementById("quote").textContent = quotes[quoteIndex];
+        }
+
+        setInterval(changeQuote, 6000);
+    </script>
 </body>
 </html>
