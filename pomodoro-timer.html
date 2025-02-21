@@ -25,6 +25,10 @@
         h2 {
             margin-bottom: 10px;
             font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
         }
         #timer {
             font-size: 3rem;
@@ -65,12 +69,18 @@
             border-color: #007BFF;
             box-shadow: 0px 0px 5px rgba(0, 123, 255, 0.5);
         }
+        .quote {
+            margin-top: 15px;
+            font-size: 1.2rem;
+            font-style: italic;
+            color: #555;
+        }
     </style>
 </head>
 <body>
 
     <div class="container">
-        <h2>Pomodoro Timer</h2>
+        <h2>⏳ Pomodoro Timer</h2>
         
         <label for="customTime">Enter Time (minutes):</label>
         <input type="number" id="customTime" value="25">
@@ -81,6 +91,8 @@
         <button class="start" onclick="startTimer()">Start</button>
         <button class="pause" onclick="pauseTimer()">Pause</button>
         <button class="reset" onclick="resetTimer()">Reset</button>
+
+        <p class="quote">"Stay focused, the work you put in today shapes your future!"</p>
     </div>
 
     <script>
@@ -140,7 +152,6 @@
             document.getElementById("timer").innerText = `${minutes}:${seconds < 10 ? "0" + seconds : seconds}`;
         }
 
-        // Enable Do Not Disturb Mode (Blocks Notifications)
         function enableDoNotDisturb() {
             if ("wakeLock" in navigator) {
                 navigator.wakeLock.request("screen").then(lock => {
@@ -149,7 +160,6 @@
             }
         }
 
-        // Disable Do Not Disturb Mode
         function disableDoNotDisturb() {
             if (window.screenLock) {
                 window.screenLock.release();
@@ -157,12 +167,10 @@
             }
         }
 
-        // Lock Screen (Prevents Switching Apps)
         function lockScreen() {
             document.documentElement.requestFullscreen().catch(console.error);
         }
 
-        // Unlock Screen (Allow User Interaction Again)
         function unlockScreen() {
             if (document.fullscreenElement) {
                 document.exitFullscreen();
