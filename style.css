@@ -27,9 +27,8 @@ header {
     margin-right: 10px;
 }
 
-/* Make "Timemaster" text white */
 .logo span, .logo h1 {
-    color: white; /* Set text color to white */
+    color: white;
     font-weight: bold;
     font-size: 20px;
 }
@@ -64,9 +63,9 @@ nav ul li .get-started {
     justify-content: space-between;
     padding: 50px;
     background-color: #f4f4f4;
+    flex-wrap: wrap;
 }
 
-/* Hero Text */
 .hero-text {
     flex: 1;
     padding-right: 20px;
@@ -96,18 +95,23 @@ nav ul li .get-started {
     text-decoration: none;
     border-radius: 5px;
     font-weight: bold;
+    transition: 0.3s ease-in-out;
 }
 
-/* Hero Image */
+.btn:hover {
+    background-color: #005bb5;
+}
+
 .hero-image {
     flex: 1;
     text-align: right;
 }
 
 .hero-image img {
-    width: 60%; /* Adjust the size of the image */
-    max-width: 350px; /* Maximum size */
-    margin-right: 20px; /* Moves image to the right */
+    width: 60%;
+    max-width: 350px;
+    margin-right: 20px;
+    border-radius: 10px;
 }
 
 /* Task Planner Section */
@@ -136,6 +140,7 @@ button {
     color: white;
     border: none;
     cursor: pointer;
+    transition: background 0.3s ease;
 }
 
 button:hover {
@@ -204,6 +209,7 @@ button:hover {
     .hero {
         flex-direction: column;
         text-align: center;
+        padding: 30px;
     }
 
     .hero-text {
@@ -212,7 +218,11 @@ button:hover {
     }
 
     .hero-image img {
-        width: 60%;
-        margin: 0 auto; /* Center image on mobile */
+        width: 80%;
+        margin: 0 auto;
+    }
+
+    .planner {
+        width: 90%;
     }
 }
