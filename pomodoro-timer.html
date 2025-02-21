@@ -4,25 +4,72 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pomodoro Timer</title>
-    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+        #timer {
+            font-size: 2em;
+            margin: 20px;
+        }
+        input {
+            width: 50px;
+            text-align: center;
+        }
+        button {
+            padding: 10px;
+            margin: 5px;
+            cursor: pointer;
+        }
+    </style>
 </head>
 <body>
-    <header>
-        <h1>Pomodoro Timer</h1>
-        <nav>
-            <ul>
-                <li><a href="index.html">Home</a></li>
-            </ul>
-        </nav>
-    </header>
 
-    <section>
-        <h2>Pomodoro Timer</h2>
-        <p id="timerDisplay">25:00</p>
-        <button onclick="startTimer()">Start</button>
-        <button onclick="resetTimer()">Reset</button>
-    </section>
+    <h2>Pomodoro Timer</h2>
+    <label for="timeInput">Set time (minutes): </label>
+    <input type="number" id="timeInput" value="25" min="1">
+    <button onclick="startTimer()">Start</button>
+    <button onclick="resetTimer()">Reset</button>
 
-    <script src="script.js"></script>
+    <div id="timer">25:00</div>
+
+    <script>
+        let countdown;
+        let timeLeft;
+        
+        function startTimer() {
+            clearInterval(countdown);
+            let minutes = document.getElementById("timeInput").value;
+            if (minutes < 1) return;
+            timeLeft = minutes * 60;
+            updateDisplay(timeLeft);
+
+            countdown = setInterval(() => {
+                timeLeft--;
+                updateDisplay(timeLeft);
+                if (timeLeft <= 0) {
+                    clearInterval(countdown);
+                    alert("Time's up!");
+                }
+            }, 1000);
+        }
+
+        function resetTimer() {
+            clearInterval(countdown);
+            let minutes = document.getElementById("timeInput").value;
+            timeLeft = minutes * 60;
+            updateDisplay(timeLeft);
+        }
+
+        function updateDisplay(seconds) {
+            let minutes = Math.floor(seconds / 60);
+            let secs = seconds % 60;
+            document.getElementById("timer").textContent = 
+                `${minutes}:${secs < 10 ? '0' : ''}${secs}`;
+        }
+    </script>
+
 </body>
 </html>
