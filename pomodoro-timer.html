@@ -17,9 +17,10 @@
         }
         .container {
             background: #fff;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 4px 4px 12px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease-in-out;
         }
         h2 {
             margin-bottom: 10px;
@@ -29,20 +30,23 @@
             font-size: 3rem;
             margin: 10px 0;
             color: #007BFF;
+            font-weight: bold;
         }
         button {
-            padding: 10px 15px;
-            margin: 5px;
+            padding: 12px 20px;
+            margin: 8px;
             border: none;
             cursor: pointer;
             font-size: 1rem;
-            border-radius: 5px;
+            font-weight: bold; /* Make text bold */
+            border-radius: 8px;
             transition: 0.3s;
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
         }
         .start { background: #28a745; color: white; }
         .pause { background: #ffc107; color: black; }
         .reset { background: #dc3545; color: white; }
-        button:hover { opacity: 0.8; }
+        button:hover { opacity: 0.9; transform: scale(1.05); }
         label {
             font-weight: bold;
             margin-right: 5px;
@@ -53,6 +57,13 @@
             border-radius: 5px;
             width: 70px;
             text-align: center;
+            border: 1px solid #ccc;
+            outline: none;
+            transition: 0.3s;
+        }
+        input:focus {
+            border-color: #007BFF;
+            box-shadow: 0px 0px 5px rgba(0, 123, 255, 0.5);
         }
     </style>
 </head>
@@ -64,7 +75,7 @@
         <!-- Timer Selection -->
         <label for="customTime">Enter Time (minutes):</label>
         <input type="number" id="customTime" value="25">
-        <button onclick="setCustomTimer()">Set</button>
+        <button onclick="setCustomTimer()" style="background: #ddd; padding: 8px 15px; border-radius: 5px;">Set</button>
 
         <div id="timer">25:00</div>
         
@@ -91,7 +102,6 @@
         function startTimer() {
             if (!isRunning) {
                 isRunning = true;
-                lockScreen(); // Lock screen when timer starts
                 timer = setInterval(() => {
                     if (timeLeft > 0) {
                         timeLeft--;
@@ -100,7 +110,6 @@
                         clearInterval(timer);
                         isRunning = false;
                         alert("Time's up! Take a break.");
-                        unlockScreen();
                     }
                 }, 1000);
             }
@@ -115,24 +124,12 @@
             clearInterval(timer);
             isRunning = false;
             setCustomTimer();
-            unlockScreen();
         }
 
         function updateTimerDisplay() {
             let minutes = Math.floor(timeLeft / 60);
             let seconds = timeLeft % 60;
             document.getElementById("timer").innerText = `${minutes}:${seconds < 10 ? "0" + seconds : seconds}`;
-        }
-
-        function lockScreen() {
-            document.body.style.pointerEvents = "none"; // Disable clicks
-            document.body.style.opacity = "0.8"; // Dim screen
-            setTimeout(() => document.body.style.pointerEvents = "auto", 2000); // Re-enable after delay
-        }
-
-        function unlockScreen() {
-            document.body.style.pointerEvents = "auto";
-            document.body.style.opacity = "1";
         }
     </script>
 
