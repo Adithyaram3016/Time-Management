@@ -3,165 +3,95 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pomodoro Timer with Social Media Block</title>
+    <title>Pomodoro Timer</title>
     <style>
         body {
             font-family: 'Poppins', sans-serif;
-            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
             background-color: #f4f4f4;
-            padding: 20px;
+            text-align: center;
         }
-
+        .container {
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
         h2 {
-            color: #333;
-        }
-
-        /* Timer Styles */
-        .timer-container {
-            margin-top: 20px;
-            padding: 20px;
-            background: white;
-            border-radius: 10px;
-            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-            display: inline-block;
-        }
-
-        #time {
-            font-size: 36px;
+            margin-bottom: 10px;
             font-weight: bold;
+        }
+        #timer {
+            font-size: 3rem;
             margin: 10px 0;
             color: #007BFF;
         }
-
-        .timer-buttons button {
-            padding: 10px 20px;
-            margin: 10px;
-            font-size: 16px;
-            cursor: pointer;
+        button {
+            padding: 10px 15px;
+            margin: 5px;
             border: none;
-            border-radius: 5px;
-            color: white;
-        }
-
-        .start { background: green; }
-        .pause { background: orange; }
-        .reset { background: red; }
-
-        /* Toggle Switch */
-        .toggle-container {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-top: 20px;
-        }
-
-        .toggle-label {
-            font-size: 18px;
-            margin-right: 10px;
-        }
-
-        .toggle-switch {
-            position: relative;
-            display: inline-block;
-            width: 50px;
-            height: 25px;
-        }
-
-        .toggle-switch input {
-            opacity: 0;
-            width: 0;
-            height: 0;
-        }
-
-        .slider {
-            position: absolute;
             cursor: pointer;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-color: #ccc;
-            transition: 0.4s;
-            border-radius: 34px;
+            font-size: 1rem;
+            border-radius: 5px;
+            transition: 0.3s;
         }
-
-        .slider:before {
-            position: absolute;
-            content: "";
-            height: 18px;
-            width: 18px;
-            left: 4px;
-            bottom: 3.5px;
-            background-color: white;
-            transition: 0.4s;
-            border-radius: 50%;
+        .start { background: #28a745; color: white; }
+        .pause { background: #ffc107; color: black; }
+        .reset { background: #dc3545; color: white; }
+        button:hover { opacity: 0.8; }
+        label {
+            font-weight: bold;
+            margin-right: 5px;
         }
-
-        input:checked + .slider {
-            background-color: #007BFF;
-        }
-
-        input:checked + .slider:before {
-            transform: translateX(24px);
-        }
-
-        #warningScreen {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.9);
-            color: white;
-            display: none;
-            justify-content: center;
-            align-items: center;
-            font-size: 20px;
+        input {
+            padding: 5px;
+            font-size: 1rem;
+            border-radius: 5px;
+            width: 70px;
             text-align: center;
-            padding: 20px;
         }
     </style>
 </head>
 <body>
-    <h2>Pomodoro Timer with Social Media Blocking</h2>
 
-    <!-- Timer UI -->
-    <div class="timer-container">
-        <p id="time">25:00</p>
-        <div class="timer-buttons">
-            <button class="start" onclick="startTimer()">Start</button>
-            <button class="pause" onclick="pauseTimer()">Pause</button>
-            <button class="reset" onclick="resetTimer()">Reset</button>
-        </div>
-    </div>
+    <div class="container">
+        <h2>Pomodoro Timer</h2>
+        
+        <!-- Timer Selection -->
+        <label for="customTime">Enter Time (minutes):</label>
+        <input type="number" id="customTime" value="25">
+        <button onclick="setCustomTimer()">Set</button>
 
-    <!-- Social Media Block Toggle -->
-    <div class="toggle-container">
-        <span class="toggle-label">Block Social Media</span>
-        <label class="toggle-switch">
-            <input type="checkbox" id="blockToggle">
-            <span class="slider"></span>
-        </label>
-    </div>
-
-    <div id="warningScreen">
-        <p>🚫 Focus Mode is ON! Close social media apps and return to your tasks. 🚀</p>
+        <div id="timer">25:00</div>
+        
+        <button class="start" onclick="startTimer()">Start</button>
+        <button class="pause" onclick="pauseTimer()">Pause</button>
+        <button class="reset" onclick="resetTimer()">Reset</button>
     </div>
 
     <script>
+        let timeLeft = 1500; // Default 25 minutes
         let timer;
-        let timeLeft = 25 * 60; // 25 minutes
         let isRunning = false;
 
-        function updateTimerDisplay() {
-            let minutes = Math.floor(timeLeft / 60);
-            let seconds = timeLeft % 60;
-            document.getElementById("time").textContent = `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+        function setCustomTimer() {
+            let customTime = parseInt(document.getElementById("customTime").value);
+            if (!isNaN(customTime) && customTime > 0) {
+                timeLeft = customTime * 60;
+                updateTimerDisplay();
+            } else {
+                alert("Please enter a valid time in minutes.");
+            }
         }
 
         function startTimer() {
             if (!isRunning) {
                 isRunning = true;
+                lockScreen(); // Lock screen when timer starts
                 timer = setInterval(() => {
                     if (timeLeft > 0) {
                         timeLeft--;
@@ -170,6 +100,7 @@
                         clearInterval(timer);
                         isRunning = false;
                         alert("Time's up! Take a break.");
+                        unlockScreen();
                     }
                 }, 1000);
             }
@@ -183,57 +114,27 @@
         function resetTimer() {
             clearInterval(timer);
             isRunning = false;
-            timeLeft = 25 * 60;
-            updateTimerDisplay();
+            setCustomTimer();
+            unlockScreen();
         }
 
-        // Social Media Blocking Logic
-        const blockedSites = ["youtube.com", "instagram.com", "facebook.com", "twitter.com", "tiktok.com"];
-
-        function blockSites() {
-            localStorage.setItem("blockActive", "true");
+        function updateTimerDisplay() {
+            let minutes = Math.floor(timeLeft / 60);
+            let seconds = timeLeft % 60;
+            document.getElementById("timer").innerText = `${minutes}:${seconds < 10 ? "0" + seconds : seconds}`;
         }
 
-        function unblockSites() {
-            localStorage.removeItem("blockActive");
+        function lockScreen() {
+            document.body.style.pointerEvents = "none"; // Disable clicks
+            document.body.style.opacity = "0.8"; // Dim screen
+            setTimeout(() => document.body.style.pointerEvents = "auto", 2000); // Re-enable after delay
         }
 
-        document.getElementById("blockToggle").addEventListener("change", function () {
-            if (this.checked) {
-                blockSites();
-                checkBlockStatus();
-            } else {
-                unblockSites();
-            }
-        });
-
-        function checkBlockStatus() {
-            if (localStorage.getItem("blockActive") === "true") {
-                let currentSite = window.location.hostname;
-                if (blockedSites.some(site => currentSite.includes(site))) {
-                    alert("Focus Mode is ON! Redirecting to Pomodoro Timer.");
-                    window.location.href = "YOUR_POMODORO_TIMER_URL";
-                }
-
-                if (isMobileDevice()) {
-                    showMobileWarning();
-                }
-            }
+        function unlockScreen() {
+            document.body.style.pointerEvents = "auto";
+            document.body.style.opacity = "1";
         }
-
-        function isMobileDevice() {
-            return /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
-        }
-
-        function showMobileWarning() {
-            document.getElementById("warningScreen").style.display = "flex";
-            setTimeout(() => {
-                document.getElementById("warningScreen").style.display = "none";
-            }, 5000); // Show for 5 seconds
-        }
-
-        updateTimerDisplay();
-        checkBlockStatus();
     </script>
+
 </body>
 </html>
