@@ -1,9 +1,11 @@
+STYLE CSS PREVIOUS CODE
+
 /* Reset default styles */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Poppins', Arial, sans-serif;
+    font-family: Arial, sans-serif;
 }
 
 /* Navbar */
@@ -11,10 +13,9 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 20px 60px;
-    background: #222;
+    padding: 15px 50px;
+    background-color: #007bff;
     color: white;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
 .logo {
@@ -23,15 +24,15 @@ header {
 }
 
 .logo img {
-    width: 50px;
-    height: 50px;
-    margin-right: 12px;
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
 }
 
 .logo span, .logo h1 {
     color: white;
     font-weight: bold;
-    font-size: 24px;
+    font-size: 20px;
 }
 
 nav ul {
@@ -40,22 +41,21 @@ nav ul {
 }
 
 nav ul li {
-    margin: 0 25px;
+    margin: 0 15px;
 }
 
 nav ul li a {
     color: white;
     text-decoration: none;
-    font-size: 18px;
-    font-weight: 600;
-    transition: color 0.3s;
-    padding: 8px 15px;
+    font-size: 16px;
+    font-weight: bold;
 }
 
-nav ul li a:hover, .get-started {
-    color: #222;
-    background-color: #ffcc00;
-    border-radius: 6px;
+nav ul li .get-started {
+    background-color: white;
+    color: #007bff;
+    padding: 8px 15px;
+    border-radius: 5px;
 }
 
 /* Hero Section */
@@ -63,48 +63,45 @@ nav ul li a:hover, .get-started {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 80px;
-    background: #f0f0f5;
-    border-bottom-left-radius: 60px;
-    border-bottom-right-radius: 60px;
+    padding: 50px;
+    background-color: #f4f4f4;
+    flex-wrap: wrap;
 }
 
 .hero-text {
     flex: 1;
-    padding-right: 40px;
+    padding-right: 20px;
 }
 
 .hero-text h2 {
-    font-size: 42px;
+    font-size: 36px;
     font-weight: bold;
     color: #333;
 }
 
 .hero-text span {
-    color: #ffcc00;
+    color: #007bff;
 }
 
 .hero-text p {
-    margin: 20px 0;
-    font-size: 20px;
-    color: #666;
+    margin: 15px 0;
+    font-size: 18px;
+    color: #555;
 }
 
 .btn {
     display: inline-block;
-    background: #ffcc00;
-    color: #222;
-    padding: 14px 28px;
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
     text-decoration: none;
-    border-radius: 10px;
+    border-radius: 5px;
     font-weight: bold;
-    transition: 0.3s;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    transition: 0.3s ease-in-out;
 }
 
 .btn:hover {
-    background-color: #222;
-    color: #ffcc00;
+    background-color: #005bb5;
 }
 
 .hero-image {
@@ -113,47 +110,43 @@ nav ul li a:hover, .get-started {
 }
 
 .hero-image img {
-    width: 65%;
-    max-width: 400px;
-    border-radius: 20px;
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+    width: 60%;
+    max-width: 350px;
+    margin-right: 20px;
+    border-radius: 10px;
 }
 
 /* Task Planner Section */
 .planner {
     width: 50%;
-    margin: 40px auto;
-    background: #fff;
-    padding: 30px;
-    border-radius: 15px;
-    box-shadow: 0px 6px 18px rgba(0, 0, 0, 0.2);
+    margin: 20px auto;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
 }
 
 h1, h2 {
-    color: #222;
+    color: #0073e6;
 }
 
 input, select, button {
-    padding: 14px;
-    margin: 10px;
-    border-radius: 8px;
-    border: 1px solid #ddd;
+    padding: 10px;
+    margin: 5px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
 }
 
 button {
-    background-color: #222;
+    background-color: #0073e6;
     color: white;
     border: none;
     cursor: pointer;
-    transition: 0.3s;
-    font-weight: bold;
-    border-radius: 10px;
-    padding: 14px 22px;
+    transition: background 0.3s ease;
 }
 
 button:hover {
-    background-color: #ffcc00;
-    color: #222;
+    background-color: #005bb5;
 }
 
 /* Task List */
@@ -166,32 +159,32 @@ button:hover {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background: #f8f8f8;
-    padding: 14px;
-    margin: 10px 0;
-    border-radius: 8px;
-    box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.1);
+    background: #f9f9f9;
+    padding: 10px;
+    margin: 5px 0;
+    border-radius: 5px;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 /* Priority Dots */
 .priority-dot {
-    width: 14px;
-    height: 14px;
+    width: 10px;
+    height: 10px;
     border-radius: 50%;
     display: inline-block;
-    margin-right: 14px;
+    margin-right: 10px;
 }
 
 /* Priority Colors */
-.low { background-color: #28a745; }
-.medium { background-color: #ffc107; }
-.high { background-color: #dc3545; }
+.low { background-color: skyblue; }
+.medium { background-color: orange; }
+.high { background-color: red; }
 
 /* Delete button hidden until hover */
 .delete-btn {
     background: none;
     border: none;
-    font-size: 18px;
+    font-size: 16px;
     cursor: pointer;
     display: none;
 }
@@ -205,36 +198,33 @@ button:hover {
     header {
         flex-direction: column;
         text-align: center;
-        padding: 25px;
     }
 
     nav ul {
         flex-direction: column;
-        margin-top: 12px;
     }
 
     nav ul li {
-        margin: 12px 0;
+        margin: 10px 0;
     }
 
     .hero {
         flex-direction: column;
         text-align: center;
-        padding: 50px;
+        padding: 30px;
     }
 
     .hero-text {
         padding-right: 0;
-        padding-bottom: 25px;
+        padding-bottom: 20px;
     }
 
     .hero-image img {
-        width: 85%;
+        width: 80%;
         margin: 0 auto;
     }
 
     .planner {
-        width: 95%;
-        padding: 25px;
+        width: 90%;
     }
 }
