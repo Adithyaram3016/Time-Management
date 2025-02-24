@@ -3,7 +3,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: Arial, sans-serif;
+    font-family: 'Poppins', Arial, sans-serif;
 }
 
 /* Navbar */
@@ -12,8 +12,9 @@ header {
     justify-content: space-between;
     align-items: center;
     padding: 15px 50px;
-    background-color: #007bff;
+    background: linear-gradient(135deg, #007bff, #005bb5);
     color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .logo {
@@ -22,15 +23,15 @@ header {
 }
 
 .logo img {
-    width: 40px;
-    height: 40px;
+    width: 45px;
+    height: 45px;
     margin-right: 10px;
 }
 
 .logo span, .logo h1 {
     color: white;
     font-weight: bold;
-    font-size: 20px;
+    font-size: 22px;
 }
 
 nav ul {
@@ -39,21 +40,32 @@ nav ul {
 }
 
 nav ul li {
-    margin: 0 15px;
+    margin: 0 20px;
 }
 
 nav ul li a {
     color: white;
     text-decoration: none;
-    font-size: 16px;
-    font-weight: bold;
+    font-size: 17px;
+    font-weight: 600;
+    transition: color 0.3s;
+}
+
+nav ul li a:hover {
+    color: #ffcc00;
 }
 
 nav ul li .get-started {
     background-color: white;
     color: #007bff;
-    padding: 8px 15px;
+    padding: 10px 18px;
     border-radius: 5px;
+    transition: 0.3s ease-in-out;
+}
+
+nav ul li .get-started:hover {
+    background-color: #ffcc00;
+    color: white;
 }
 
 /* Hero Section */
@@ -61,18 +73,20 @@ nav ul li .get-started {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 50px;
-    background-color: #f4f4f4;
+    padding: 60px;
+    background: linear-gradient(135deg, #f4f4f4, #e8f0fe);
     flex-wrap: wrap;
+    border-bottom-left-radius: 50px;
+    border-bottom-right-radius: 50px;
 }
 
 .hero-text {
     flex: 1;
-    padding-right: 20px;
+    padding-right: 30px;
 }
 
 .hero-text h2 {
-    font-size: 36px;
+    font-size: 38px;
     font-weight: bold;
     color: #333;
 }
@@ -82,24 +96,26 @@ nav ul li .get-started {
 }
 
 .hero-text p {
-    margin: 15px 0;
+    margin: 20px 0;
     font-size: 18px;
     color: #555;
 }
 
 .btn {
     display: inline-block;
-    background-color: #007bff;
+    background: #007bff;
     color: white;
-    padding: 10px 20px;
+    padding: 12px 24px;
     text-decoration: none;
-    border-radius: 5px;
+    border-radius: 8px;
     font-weight: bold;
     transition: 0.3s ease-in-out;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
 }
 
 .btn:hover {
-    background-color: #005bb5;
+    background-color: #ffcc00;
+    color: white;
 }
 
 .hero-image {
@@ -111,17 +127,18 @@ nav ul li .get-started {
     width: 60%;
     max-width: 350px;
     margin-right: 20px;
-    border-radius: 10px;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
 }
 
 /* Task Planner Section */
 .planner {
     width: 50%;
-    margin: 20px auto;
+    margin: 30px auto;
     background: white;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.15);
 }
 
 h1, h2 {
@@ -129,9 +146,9 @@ h1, h2 {
 }
 
 input, select, button {
-    padding: 10px;
-    margin: 5px;
-    border-radius: 5px;
+    padding: 12px;
+    margin: 8px;
+    border-radius: 6px;
     border: 1px solid #ccc;
 }
 
@@ -141,10 +158,14 @@ button {
     border: none;
     cursor: pointer;
     transition: background 0.3s ease;
+    font-weight: bold;
+    border-radius: 8px;
+    padding: 12px 18px;
 }
 
 button:hover {
-    background-color: #005bb5;
+    background-color: #ffcc00;
+    color: white;
 }
 
 /* Task List */
@@ -158,25 +179,25 @@ button:hover {
     align-items: center;
     justify-content: space-between;
     background: #f9f9f9;
-    padding: 10px;
-    margin: 5px 0;
-    border-radius: 5px;
-    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+    padding: 12px;
+    margin: 8px 0;
+    border-radius: 6px;
+    box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.1);
 }
 
 /* Priority Dots */
 .priority-dot {
-    width: 10px;
-    height: 10px;
+    width: 12px;
+    height: 12px;
     border-radius: 50%;
     display: inline-block;
-    margin-right: 10px;
+    margin-right: 12px;
 }
 
 /* Priority Colors */
-.low { background-color: skyblue; }
-.medium { background-color: orange; }
-.high { background-color: red; }
+.low { background-color: #5cb85c; } /* Green */
+.medium { background-color: #f0ad4e; } /* Orange */
+.high { background-color: #d9534f; } /* Red */
 
 /* Delete button hidden until hover */
 .delete-btn {
@@ -196,10 +217,12 @@ button:hover {
     header {
         flex-direction: column;
         text-align: center;
+        padding: 20px;
     }
 
     nav ul {
         flex-direction: column;
+        margin-top: 10px;
     }
 
     nav ul li {
@@ -209,7 +232,7 @@ button:hover {
     .hero {
         flex-direction: column;
         text-align: center;
-        padding: 30px;
+        padding: 40px;
     }
 
     .hero-text {
@@ -224,5 +247,6 @@ button:hover {
 
     .planner {
         width: 90%;
+        padding: 20px;
     }
 }
